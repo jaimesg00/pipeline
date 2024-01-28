@@ -4,18 +4,19 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    checkout scm
-                }
+                git url: 'https://github.com/jaimesg00/pipeline.git', branch: 'main'
             }
         }
 
-        stage('Decir Hola') {
-            steps {
-                script {
-                    echo 'Hola Mundo'
-                }
-            }
+        // Otras etapas del pipeline...
+    }
+
+    post {
+        success {
+            echo '¡Pipeline ejecutado exitosamente!'
+        }
+        failure {
+            echo '¡El pipeline ha fallado!'
         }
     }
 }
